@@ -15,12 +15,14 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "web" {
+  count = var.environment == Prod ? 2 : 1
+
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.micro"
 
   tags = {
-    Name = var.nome
-    Env  = var.environment
+    Name       = var.nome
+    Env        = var.environment
     Plataforma = data.aws_ami.ubuntu.platform_details
   }
 }
