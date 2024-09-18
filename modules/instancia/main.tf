@@ -28,7 +28,7 @@ resource "aws_instance" "web" {
 }
 
 
-
+## Usando feature flag para criar ou não uma instancia
 resource "aws_instance" "bd" {
   count = var.criar_instancia ? 1 : 0
 
