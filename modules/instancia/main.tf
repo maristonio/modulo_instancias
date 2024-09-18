@@ -26,3 +26,18 @@ resource "aws_instance" "web" {
     Plataforma = data.aws_ami.ubuntu.platform_details
   }
 }
+
+
+
+resource "aws_instance" "bd" {
+  count = var.criar_instancia ? 1 : 0
+
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t3.micro"
+
+  tags = {
+    Name       = var.nome
+    Env        = var.environment
+    Plataforma = data.aws_ami.ubuntu.platform_details
+  }
+}
